@@ -1,0 +1,376 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./quiz.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h2 id="head" class="mainhead">Sign Up</h2>
+            <form action="./quiz.html" onsubmit="return validateform()">
+                
+                <div id="ic1" class="input-container">
+                    <i class="fa fa-user"></i> 
+                    <input type="text" placeholder="Username" id="usrname"  class="name" >
+                </div>
+                <div id="er1"></div>
+                <div id="ic2" class="input-container">
+                    <i class="fa fa-envelope"></i> 
+                    <input type="email" placeholder="Email" id="email"  class="name" >
+                </div>
+                <div id="er2" ></div>
+
+                <div id="ic3" class="input-container">
+                    <i class="fa fa-lock"></i> 
+                    <input type="password" placeholder="Password" id="pswd1" class="name" >
+                </div>
+                <div id="er3" ></div>
+               
+                <div id="ic4" class="input-container">
+                    <i class="fa fa-lock"></i> 
+                    <input type="password" placeholder="Confirm Password" id="pswd2"  class="name" >
+                </div>
+                <div id="er4" ></div>
+                <div class="btns">
+                <button type="submit" id="btn1">Sign Up</button>
+                <button type="click" id="btn2">Sign in</button>
+                
+                
+            </div>
+
+
+           
+        </div>
+    </div>
+</form>
+
+<script>
+  let btn1=document.getElementById("btn1")
+  let btn2=document.getElementById("btn2")
+  let ic1=document.getElementById("ic1")
+  let ic2=document.getElementById("ic2")
+  let ic3=document.getElementById("ic3")
+  let head=document.getElementById("head")
+
+ 
+  
+    btn2.onclick=function(){
+    ic1.style.display="none";
+    ic4.style.display="none";
+    head.innerHTML="Sign in";
+    ic2.style.display="block";
+    ic3.style.display="block";
+    ic2.style.marginTop="70px";
+    btn1.style.marginTop="100px";
+    btn2.style.marginTop="100px";
+    let er1=document.getElementById("er1")
+    let er2=document.getElementById("er2")
+    let er3=document.getElementById("er3")
+    let er4=document.getElementById("er4")
+    // er1.innerHTML=" ";
+    // er2.innerHTML=" ";
+    // er3.innerHTML=" ";
+    // er4.innerHTML=" ";
+    er1.style.display="none";
+    er2.style.display="none";
+    er3.style.display="none";
+    er4.style.display="none";
+  
+  
+    
+    let form = document.querySelector("form");
+form.onsubmit = function() {
+    return validate2();
+};
+form.action = "./quiz.html";
+
+
+
+
+  
+   
+};
+
+
+
+
+    
+
+
+
+   
+   
+    
+    btn1.onclick=function(){
+    ic1.style.display="block";
+    ic4.style.display="block";
+    head.innerHTML="Sign  Up";
+    ic2.style.marginTop="25px";
+    btn1.style.marginTop="20px";
+    btn2.style.marginTop="20px";
+    let er1=document.getElementById("er1")
+    let er2=document.getElementById("er2")
+    let er3=document.getElementById("er3")
+    let er4=document.getElementById("er4")
+    if (er1) er1.innerHTML = " ";
+    if (er2) er2.innerHTML = " ";
+    if (er3) er3.innerHTML = " ";
+    if (er4) er4.innerHTML = " ";
+   
+  
+    }
+    function validate2()
+  {
+    
+    let  isValid=true;   
+
+    let email=document.getElementById("email").value
+    let er2=document.getElementById("er2")
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    {
+   isValid=false
+   er2.innerHTML="*<b>Invalid email</b>"
+ 
+    }
+    let pswd1=document.getElementById("pswd1").value
+    let er3=document.getElementById("er3")
+    if( !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(pswd1))
+    {
+        isValid=false
+        er3.innerHTML="<b>*password must contain atleast 6 charcters one number and one lower and uppercase in it</b>"
+     
+    }
+    let pswd2=document.getElementById("pswd2").value
+    let er4=document.getElementById("er4")
+   
+    
+    
+        
+    return isValid;
+  }
+
+  
+
+   
+
+  
+
+
+  function validateform()
+  {
+    
+    let  returnval=true;   
+    let usrname=document.getElementById("usrname").value;
+    let str=" "
+    for(i of usrname)
+    {
+      str+=i
+    }
+  
+    let count=0
+   
+        
+        if(str.includes("@"))
+        {
+            count++
+        }
+    
+    if(count==0)
+    {
+        returnval = false;
+                let er1=document.getElementById("er1")
+                er1.innerHTML="<b>*it must have contain @ in it </b>"
+            
+    }
+    if (usrname.length <= 5) {
+                returnval = false;
+                let er1=document.getElementById("er1")
+                er1.innerHTML="<b>*username should be atleast 6 characters</b>"
+             
+               
+            }
+          
+            else{
+                er1.innerHTML=" "
+            }
+    if(!/\d/.test(usrname))
+    {
+        returnval=false
+          let er1=document.getElementById("er1")
+        er1.innerHTML="<b>*username must contain atleast 1 numerical in it</b>"
+      
+
+    }
+    let email=document.getElementById("email").value
+    let er2=document.getElementById("er2")
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    {
+   returnval=false
+   er2.innerHTML="*<b>Invalid email</b>"
+ 
+    }
+    let pswd1=document.getElementById("pswd1").value
+    let er3=document.getElementById("er3")
+    if( !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(pswd1))
+    {
+        returnval=false
+        er3.innerHTML="<b>*password must contain atleast 6 charcters one number and one lower and uppercase in it</b>"
+     
+    }
+    let pswd2=document.getElementById("pswd2").value
+    let er4=document.getElementById("er4")
+    if(pswd1!=pswd2)
+    {
+      returnval=false
+      er4.innerHTML="<b>password is incorrect</b>"
+   
+
+    }
+    
+    
+        
+    return returnval;
+  }
+
+
+  
+
+    
+
+
+</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./quiz.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h2 id="head" class="mainhead">Sign Up</h2>
+            <form id="form" action="./quiz.html" method="POST" onsubmit="return validateForm()">
+                <div id="ic1" class="input-container">
+                    <i class="fa fa-user"></i> 
+                    <input type="text" placeholder="Username" id="usrname" class="name">
+                </div>
+                <div id="er1" class="error"></div>
+
+                <div id="ic2" class="input-container">
+                    <i class="fa fa-envelope"></i> 
+                    <input type="email" placeholder="Email" id="email" class="name">
+                </div>
+                <div id="er2" class="error"></div>
+
+                <div id="ic3" class="input-container">
+                    <i class="fa fa-lock"></i> 
+                    <input type="password" placeholder="Password" id="pswd1" class="name">
+                </div>
+                <div id="er3" class="error"></div>
+
+                <div id="ic4" class="input-container">
+                    <i class="fa fa-lock"></i> 
+                    <input type="password" placeholder="Confirm Password" id="pswd2" class="name">
+                </div>
+                <div id="er4" class="error"></div>
+
+                <div class="btns">
+                    <button type="submit" id="btn1">Sign Up</button>
+                    <button type="button" id="btn2">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("btn2").onclick = function() {
+            document.getElementById("ic1").style.display = "none";
+            document.getElementById("ic4").style.display = "none";
+            document.getElementById("head").innerText = "Sign In";
+            document.getElementById("ic2").style.marginTop = "70px";
+            document.getElementById("btn1").style.marginTop = "100px";
+            document.getElementById("btn2").style.marginTop = "100px";
+
+            document.querySelectorAll(".error").forEach(function(error) {
+                error.style.display = "none";
+            });
+
+            let form = document.getElementById("form");
+            form.onsubmit = function() {
+                return validateSignIn();
+            };
+            form.action = "./quiz.html";
+        };
+
+        document.getElementById("btn1").onclick = function() {
+            document.getElementById("ic1").style.display = "block";
+            document.getElementById("ic4").style.display = "block";
+            document.getElementById("head").innerText = "Sign Up";
+            document.getElementById("ic2").style.marginTop = "25px";
+            document.getElementById("btn1").style.marginTop = "20px";
+            document.getElementById("btn2").style.marginTop = "20px";
+
+            document.querySelectorAll(".error").forEach(function(error) {
+                error.innerHTML = "";
+            });
+        };
+
+        function validateForm() {
+            let isValid = true;
+            let username = document.getElementById("usrname").value;
+            let email = document.getElementById("email").value;
+            let password1 = document.getElementById("pswd1").value;
+            let password2 = document.getElementById("pswd2").value;
+
+            if (!username.includes("@") || username.length <= 5 || !/\d/.test(username)) {
+                document.getElementById("er1").innerHTML = "<b>* Username must contain @, at least 6 characters, and one number</b>";
+                isValid = false;
+            }
+
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                document.getElementById("er2").innerHTML = "<b>* Invalid email</b>";
+                isValid = false;
+            }
+
+            if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(password1)) {
+                document.getElementById("er3").innerHTML = "<b>* Password must be 6-20 characters long and contain at least one number, one lowercase and one uppercase letter</b>";
+                isValid = false;
+            }
+
+            if (password1 !== password2) {
+                document.getElementById("er4").innerHTML = "<b>* Passwords do not match</b>";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function validateSignIn() {
+            let isValid = true;
+            let email = document.getElementById("email").value;
+            let password1 = document.getElementById("pswd1").value;
+
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                document.getElementById("er2").innerHTML = "<b>* Invalid email</b>";
+                isValid = false;
+            }
+
+            if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(password1)) {
+                document.getElementById("er3").innerHTML = "<b>* Password must be 6-20 characters long and contain at least one number, one lowercase and one uppercase letter</b>";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
